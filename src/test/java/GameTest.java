@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
 
-    Player p1 = new Player(1, "playerName1", 2);
-    Player p2 = new Player(2, "playerName2", 1);
-    Player p3 = new Player(3, "playerName3", 1);
+    Player p1 = new Player("playerName1", 2);
+    Player p2 = new Player("playerName2", 1);
+    Player p3 = new Player("playerName3", 1);
     Game gamers = new Game();
 
     @BeforeEach

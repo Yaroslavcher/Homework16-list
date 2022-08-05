@@ -1,33 +1,35 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Game {
-    private ArrayList<Player> players = new ArrayList<>();
+    private HashMap<String, Integer> map = new HashMap<>();
 
     public void register(Player player) {
-        players.add(player);
+        map.put(player.getName(), player.getStrength());
     }
 
     public int round(String playerName1, String playerName2) {
-        Player p1 = null;
-        Player p2 = null;
-        for (Player player : players) {
-            if (player.getName().equals(playerName1)) {
-                p1 = player;
+        String p1 = null;
+        String p2 = null;
+        for (String key : map.keySet()) {
+            if (key.equals(playerName1)) {
+                p1 = key;
             }
-            if (player.getName().equals(playerName2)) {
-                p2 = player;
+            if (key.equals(playerName2)) {
+                p2 = key;
             }
         }
+
+
         if (p1 == null) {
             throw new NotRegisteredException("Игрок " + playerName1 + " не зарегистрирован");
         }
         if (p2 == null) {
             throw new NotRegisteredException("Игрок " + playerName2 + " не зарегистрирован");
         }
-        if (p1.getStrength() == p2.getStrength()) {
+        if (map.get(p1) == map.get(p2)) {
             return 0;
         }
-        if (p1.getStrength() < p2.getStrength()) {
+        if (map.get(p1) < map.get(p2)) {
             return 2;
         } else {
             return 1;
